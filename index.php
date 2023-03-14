@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="game">
-      <h1>Tic Tac Toe</h1>
+      <h1>Tic Tac Toe!</h1>
       <table>
         <tr>
           <td id="0"></td>

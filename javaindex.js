@@ -1,6 +1,11 @@
 let board = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 let gameover = false;
+const cells = document.querySelectorAll("td");
+
+for (let i = 0; i < cells.length; i++) {
+  cells[i].addEventListener("click", handleClick);
+}
 
 const winningConditions = [
   [0, 1, 2],
@@ -12,9 +17,6 @@ const winningConditions = [
   [0, 4, 8],
   [2, 4, 6]
 ];
-
-const cells = document.querySelectorAll("td");
-
 function checkWin() {
   for (let i = 0; i < winningConditions.length; i++) {
     let a = winningConditions[i][0];
@@ -59,4 +61,11 @@ function reset() {
   board = ["", "", "", "", "", "", "", "", ""];
   currentPlayer = "X";
   gameover = false;
+  cells.forEach(function (cell) {
+    cell.textContent = "";
+    cell.style.backgroundColor = "";
+  });
 }
+
+const resetButton = document.querySelector("#reset");
+resetButton.addEventListener("click", reset);

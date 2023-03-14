@@ -66,6 +66,86 @@ function reset() {
     cell.style.backgroundColor = "";
   });
 }
-
+// FIX DARK MODE 
 const resetButton = document.querySelector("#reset");
 resetButton.addEventListener("click", reset);
+const chatOutput = document.getElementById("chat-output");
+const userInput = document.getElementById("user-input");
+const sendBtn = document.getElementById("send-btn");
+const themeBtn = document.getElementById("theme-btn");
+
+
+let isDark = false;
+
+function toggleTheme() {
+  const body = document.getElementsByTagName("body")[0];
+  if (isDark) {
+    body.classList.remove("dark");
+    themeBtn.textContent = "Switch to Dark Theme";
+  } else {
+    body.classList.add("dark");
+    themeBtn.textContent = "Switch to Light Theme";
+  }
+  isDark = !isDark;
+}
+
+// add event listener to themeBtn element
+themeBtn.addEventListener("click", toggleTheme);
+
+function sendMessage() {
+  const message = userInput.value;
+  chatOutput.innerHTML += `<p>You: ${message}</p>`;
+  userInput.value = "";
+}
+
+sendBtn.addEventListener("click", sendMessage);
+themeBtn.addEventListener("click", toggleTheme);
+
+const activeUsers = [];
+
+// Add user to active users list
+function addUser(username) {
+  activeUsers.push(username);
+  localStorage.setItem('activeUsers', JSON.stringify(activeUsers));
+}
+
+// Remove user from active users list
+function removeUser(username) {
+  const index = activeUsers.indexOf(username);
+  if (index !== -1) {
+    activeUsers.splice(index, 1);
+    localStorage.setItem('activeUsers', JSON.stringify(activeUsers));
+  }
+}
+
+// Display active users list
+function displayActiveUsers() {
+  const activeUsersContainer = document.querySelector('#active-users ul');
+  activeUsersContainer.innerHTML = '';
+  activeUsers.forEach(user => {
+    const listItem = document.createElement('li');
+    listItem.textContent = user;
+    activeUsersContainer.appendChild(listItem);
+  });
+}
+
+// Retrieve active users from local storage on page load
+function loadActiveUsers() {
+  const storedActiveUsers = localStorage.getItem('activeUsers');
+  if (storedActiveUsers) {
+    activeUsers.push(...JSON.parse(storedActiveUsers));
+    displayActiveUsers();
+  }
+}
+
+// Add a new user to the active users list
+const username = prompt('Please enter your username:');
+addUser(username);
+
+// Remove user from active users list when they leave the page
+window.addEventListener('beforeunload', () => {
+  removeUser(username);
+});
+
+// Display active users on page load
+loadActiveUsers();

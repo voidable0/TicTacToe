@@ -6,26 +6,39 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div id="active-users">
+      <h2>Active Users:</h2>
+      <ul></ul>
+    </div>
     <div class="game">
       <h1>Tic Tac Toe!</h1>
-     <table>
-  <tr>
-    <td id="0" readonly></td>
-    <td id="1" readonly></td>
-    <td id="2" readonly></td>
-  </tr>
-  <tr>
-    <td id="3" readonly></td>
-    <td id="4" readonly></td>
-    <td id="5" readonly></td>
-  </tr>
-  <tr>
-    <td id="6" readonly></td>
-    <td id="7" readonly></td>
-    <td id="8" readonly></td>
-  </tr>
-</table>
+      <table>
+        <tr>
+          <td id="0" readonly></td>
+          <td id="1" readonly></td>
+          <td id="2" readonly></td>
+        </tr>
+        <tr>
+          <td id="3" readonly></td>
+          <td id="4" readonly></td>
+          <td id="5" readonly></td>
+        </tr>
+        <tr>
+          <td id="6" readonly></td>
+          <td id="7" readonly></td>
+          <td id="8" readonly></td>
+        </tr>
+      </table>
       <button id="reset">Reset</button>
+
+      <div id="chat-container">
+        <div id="chat-output"></div>
+        <div id="chat-input">
+          <input type="text" id="user-input" placeholder="Type here to chat">
+          <button id="send-btn">Send</button>
+        </div>
+      </div>
+      <button id="theme-btn">Switch to Dark Theme</button>
     </div>
     <script src="javaindex.js"></script>
   </body>

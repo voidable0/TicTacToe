@@ -88,7 +88,6 @@ function toggleTheme() {
   }
   isDark = !isDark;
 }
-
 // add event listener to themeBtn element
 themeBtn.addEventListener("click", toggleTheme);
 
